@@ -38,7 +38,7 @@ class ContaCorrente:
 
     # Function to set the limit of the account(method private)     
     def _limite_da_conta(self):
-        self._limite = -1000
+        self._limite = self._saldo * 0.4
         return self._limite
     
     # Function to check the limit of the account
@@ -71,22 +71,27 @@ class ContaCorrente:
         for transacao in self._transacoes:
             print(transacao)
             
+    def cartoes_da_conta(self):
+        
+        print(f'Cartões da conta {self.__numero_conta}')
+        for cartao in self.cartoes:
+            print(f'Titular: {cartao.titular}')
+            print(f'Número do Cartão: {cartao.numero_cartao}')
+        
+        if len(self.cartoes) == 1:     
+            print(f'A conta tem {len(self.cartoes)} cartão')
+            
+        elif len(self.cartoes) >= 1:
+            print(f'A conta tem {len(self.cartoes)} cartões')
+            
+        else:
+            print('A conta não tem nenhum cartão cadastrado')
+            
 
     # def __str__(self):
     #     return f'Conta {self.numero}, Correntista: {self.nome_correntista}, Saldo: {self.saldo}'
     
-# Test the class    
-__name__ = '__main__'
-conta_leonardo = ContaCorrente('Leonardo', '229.583.958-04', '1234', '030462')
-conta_augusto = ContaCorrente('Augusto', '222.555.333-04', '9801', '076289')
-conta_leonardo.depositar(3000)
-print('.'*70)
-conta_leonardo.resgatar(200)
-print('.'*70)
-conta_leonardo.consulta_extrato()
-print('.'*70)
-conta_leonardo.transferir(700, conta_augusto)
-print('.'*70)
+
 
 
 

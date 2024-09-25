@@ -13,10 +13,11 @@ class Cartao_de_Credito:
 
     def __init__(self, titular, conta_corrente):
         self.limite = 1200
-        self.numero = randint
+        self.numero_cartao = ' '.join([''.join([str(randint(0, 9)) for _ in range(4)]) for _ in range(4)])
         self.titular = titular
         self.validade = self._definiir_validade()
-        self.cvv = None
+        self.cvv = ''.join([str(randint(0, 9)) for _ in range(3)])
+        self._senha = None
         self.conta_corrente = conta_corrente
         self.fatura = []
         self.fatura_aberta = False
@@ -49,17 +50,25 @@ class Cartao_de_Credito:
     def consultar_validade(self):
         print(f'A validade do cartão é: {self.validade}')
         return self.validade
-
-# Test the class    
-__name__ = '__main__'
-
-from Classe_Conta_Corrente import ContaCorrente
-
-conta_leonardo = ContaCorrente('Leonardo', '229.583.958-04', '1234', '030462')
-Cartao_leo = Cartao_de_Credito('Leonardo', conta_leonardo)
-Cartao_leo.consultar_num_conta()
-Cartao_leo.consultar_validade()
-Cartao_leo.alterar_limite(1200)
+    
+    def consultar_numero_cartao(self):
+        print(f'O número do cartão é: {self.numero_cartao}')
+        return self.numero_cartao
+    
+    def consultar_cvv(self):
+        print(f'O CVV do cartão é: {self.cvv}')
+        return self.cvv
+    
+    @property
+    def senha(self):
+        return self._senha
+    
+    @senha.setter
+    def senha(self, valor):
+        if len(valor) == 4 and valor.isnumeric():
+            self._senha = valor
+        else:
+            print('A senha deve ter 4 dígitos numéricos')
 
 
 
