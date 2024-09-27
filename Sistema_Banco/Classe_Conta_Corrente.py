@@ -5,6 +5,10 @@ import pytz
 
 # Define a class called ContaCorrente
 class ContaCorrente:
+
+    Agencia_premium_plus = Agencia('Agencia Premium Plus', '001', '+55 (11) 976591983', 'Av. Faria Lima')
+    Agencia_premium = Agencia('Agencia Premium', '002', '+55 (11) 972310305', 'Av. Faria Lima')
+    agencia_pobre = Agencia('Agencia Premium', '003', '+55 (21) 995551555', 'Av. JK')
     
     @staticmethod
     def _data_hora():
@@ -21,7 +25,8 @@ class ContaCorrente:
         self._limite = None
         self._transacoes = []
         self.cartoes = []
-        Agencia.contas_correntes.append(self)
+        self.Agencia_premium_plus.contas_correntes.append(self)
+        # Agencia.contas_correntes.append(self)
         
 
     def consultar_numero_conta(self):
