@@ -1,4 +1,5 @@
 #%%
+from Classe_Agencia import Agencia
 from datetime import datetime
 import pytz
 
@@ -11,15 +12,17 @@ class ContaCorrente:
         hora_BR = datetime.now(fuso_BR)
         return hora_BR.strftime('%d/%m/%Y %H:%M:%S')    
     
-    def __init__(self, nome, cpf, agencia, numero_conta):
+    def __init__(self, nome, cpf, numero_conta):
         self._nome = nome
         self._cpf = cpf
-        self.__agencia = agencia
+        self._agencia = None
         self.__numero_conta = numero_conta
         self._saldo = 0
         self._limite = None
         self._transacoes = []
         self.cartoes = []
+        Agencia.contas_correntes.append(self)
+        
 
     def consultar_numero_conta(self):
         return self.__numero_conta
@@ -88,11 +91,9 @@ class ContaCorrente:
             print('A conta não tem nenhum cartão cadastrado')
             
 
+            
+            
+
     # def __str__(self):
     #     return f'Conta {self.numero}, Correntista: {self.nome_correntista}, Saldo: {self.saldo}'
     
-
-
-
-
-

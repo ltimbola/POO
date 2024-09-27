@@ -27,13 +27,18 @@ print('-'*50)
 conta_leonardo.transferir(300, conta_augusto)
 print('-'*50)
 
+# Extrat of the account
+conta_leonardo.consulta_extrato()
+print('-'*50)
+
 # Info about the Credit Cards
-# Cartao_leo.consultar_num_conta()
-# Cartao_leo.consultar_validade()
-# Cartao_leo.consultar_numero_cartao()
-# Cartao_leo.consultar_cvv()
-# Cartao_leo.alterar_limite(3000)
+Cartao_leo.consultar_num_conta()
+Cartao_leo.consultar_validade()
+Cartao_leo.consultar_numero_cartao()
+Cartao_leo.consultar_cvv()
+Cartao_leo.alterar_limite(3000)
 print('-'*50)
 
 # Discovering the credit cards of the account
 conta_leonardo.cartoes_da_conta()
+
