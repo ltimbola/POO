@@ -3,8 +3,8 @@ from Classe_Conta_Corrente import ContaCorrente
 from Classe_Cartao_de_Credito import Cartao_de_Credito
 
 # Create the accounts
-conta_leonardo = ContaCorrente('Leonardo', '229.583.958-04', '1234', '030462')
-conta_augusto = ContaCorrente('Augusto', '222.555.333-04', '9801', '076289')
+conta_leonardo = ContaCorrente('Leonardo', '229.583.958-04')
+conta_augusto = ContaCorrente('Augusto', '222.555.333-04')
 
 # Create the credit cards
 Cartao_leo = Cartao_de_Credito('Leonardo', conta_leonardo)
@@ -25,7 +25,12 @@ print('-'*50)
 
 # Transfers
 conta_leonardo.transferir(300, conta_augusto)
+conta_leonardo.depositar(5000)
 print('-'*50)
+
+# Determining the agency
+conta_leonardo.determinar_agencia()
+conta_augusto.determinar_agencia()
 
 # Extrat of the account
 conta_leonardo.consulta_extrato()

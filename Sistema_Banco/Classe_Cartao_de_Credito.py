@@ -3,6 +3,7 @@ from datetime import datetime
 import pytz
 from random import randint
 
+
 class Cartao_de_Credito:
 
     @staticmethod

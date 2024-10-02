@@ -2,13 +2,14 @@
 from Classe_Agencia import Agencia
 from datetime import datetime
 import pytz
+from random import randint
 
 # Define a class called ContaCorrente
 class ContaCorrente:
 
-    Agencia_premium_plus = Agencia('Agencia Premium Plus', '001', '+55 (11) 976591983', 'Av. Faria Lima')
-    Agencia_premium = Agencia('Agencia Premium', '002', '+55 (11) 972310305', 'Av. Faria Lima')
-    agencia_pobre = Agencia('Agencia Premium', '003', '+55 (21) 995551555', 'Av. JK')
+    Agencia_premium_plus = Agencia('Agencia Premium Plus', '001', '+55 (11) 976591983', 'Agencia_Premium_Plus@gmail.com','Av. Faria Lima')
+    Agencia_premium = Agencia('Agencia Premium', '002', '+55 (11) 972310305', 'Agencia_Premium@gmail.com', 'Av. Faria Lima')
+    agencia_pobre = Agencia('Agencia Premium', '003', '+55 (21) 995551555', 'Agencia_Pobre@gmail.com', 'Av. JK')
     
     @staticmethod
     def _data_hora():
@@ -16,17 +17,17 @@ class ContaCorrente:
         hora_BR = datetime.now(fuso_BR)
         return hora_BR.strftime('%d/%m/%Y %H:%M:%S')    
     
-    def __init__(self, nome, cpf, numero_conta):
+    def __init__(self, nome, cpf):
         self._nome = nome
         self._cpf = cpf
         self._agencia = None
-        self.__numero_conta = numero_conta
+        self.__numero_conta = ''.join([str(randint(0, 9)) for _ in range(6)])
         self._saldo = 0
         self._limite = None
         self._transacoes = []
         self.cartoes = []
-        self.Agencia_premium_plus.contas_correntes.append(self)
-        # Agencia.contas_correntes.append(self)
+        # self.Agencia_premium_plus.contas_correntes.append(self)
+        
         
 
     def consultar_numero_conta(self):
@@ -94,6 +95,20 @@ class ContaCorrente:
             
         else:
             print('A conta não tem nenhum cartão cadastrado')
+
+    def determinar_agencia(self):
+        if self._saldo >= 100_000:
+            self._agencia = ContaCorrente.Agencia_premium_plus
+            ContaCorrente.Agencia_premium_plus.contas_correntes.append(self)
+
+        elif self._saldo >= 50_000:
+            self._agencia = ContaCorrente.Agencia_premium
+            ContaCorrente.Agencia_premium.contas_correntes.append(self)
+
+        else:  
+            self._agencia = ContaCorrente.agencia_pobre
+            ContaCorrente.agencia_pobre.contas_correntes.append(self)
+            
             
 
             
